@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
 </head>
 <body>
+
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Message" id="input" aria-label="Recipient's username with two button addons">
+    <button class="btn btn-outline-secondary" id="sendMe" type="submit">Send to me</button>
+    <button class="btn btn-outline-secondary" id="sendAll" type="submit">Send to all</button>
+</div>
+
+<div id="target"></div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="chat.js"></script>

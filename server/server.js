@@ -7,22 +7,24 @@ const server = http.createServer(app);
 const port = 9020;
 
 
-server.listen(9020, () =>{
-    console.log("server running on "+ port);
-});
 
 //const io is entry point of all sockets connected to the serve
 const io = require('socket.io')(server);
 
 //connection from the client
+let counter = 0;
 io.on('connection', (socket) => {
+//increment counter
+    counter++;
     console.log(counter+ ' someone connected');
+    socket.on('sendAll', (target) =>{
+        io.emit("displayMessage", (target));
+    });
+
 });
 
-let counter = 0;
-//increment counter
-counter++;
 
-
-
+server.listen(port, () =>{
+    console.log("server running on "+ port);
+});
 
