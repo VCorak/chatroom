@@ -4,10 +4,19 @@
 After this learning challenge, you'll be able to:
 
 * Set up a node environment
+  - this was quite clear and smooth
 * Make a connection between different clients and the servers
+  - had a bit of issues with details in connection, forgot to add some lines of code...but did not take long to realize thankfully...
 * Work with sockets
+  
+    <img src="https://media.giphy.com/media/d2jjL98HvwZJ69yw/giphy.gif" width="100" height="100">
+
+    Sorry had to do it 😃
+  
 * Configure express and socket.io for node
+    * went pretty well- like the instructions in the exercise Readme.md, very neat and clear
 * Make a basic chatroom
+  * basic chatroom done- works nicely when sending message to all from different tabs in browser and when I send to myself
 
 # Must-have features
 * Make a UI that makes it easy for people to send messages in this chatroom.
