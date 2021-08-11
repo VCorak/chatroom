@@ -7,7 +7,6 @@ const server = http.createServer(app);
 const port = 9020;
 
 
-
 //const io is entry point of all sockets connected to the serve
 const io = require('socket.io')(server);
 
@@ -17,10 +16,11 @@ io.on('connection', (socket) => {
 //increment counter
     counter++;
     console.log(counter+ ' someone connected');
+    // This is an observer that waits until the message "sendToAll" gets passed to the server
     socket.on('sendAll', (target) =>{
+        // The io.emit on the server means that the server will now send the call to 'displayMessage' to ALL clients connected and also passes the message back as a parameter
         io.emit("displayMessage", (target));
     });
-
 });
 
 
