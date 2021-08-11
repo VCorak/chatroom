@@ -17,9 +17,15 @@ io.on('connection', (socket) => {
     counter++;
     console.log(counter+ ' someone connected');
     // This is an observer that waits until the message "sendToAll" gets passed to the server
-    socket.on('sendAll', (target) =>{
+    socket.on('sendAll', (target) => {
         // The io.emit on the server means that the server will now send the call to 'displayMessage' to ALL clients connected and also passes the message back as a parameter
         io.emit("displayMessage", (target));
+    });
+    socket.on('sendMe', (target) => {
+        // Now instead of doing an io.emit, we are going to do a socket.emit. The difference here is that if you emit to io,
+        // all connected clients will receive the message,
+        // whereas the socket.emit will only send it back to the socket of which it received the message.
+        socket.emit("displayMessage", (target));
     });
 });
 
