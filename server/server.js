@@ -16,8 +16,13 @@ const io = require('socket.io')(server);
 
 //connection from the client
 io.on('connection', (socket) => {
-    console.log('someone connected');
+    console.log(counter+ ' someone connected');
 });
+
+let counter = 0;
+//increment counter
+counter++;
+
 
 
 
