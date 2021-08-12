@@ -5,6 +5,7 @@ const clientPath = `${__dirname}/../client`;
 app.use(express.static(clientPath));
 const server = http.createServer(app);
 const port = 9020;
+const users = {};
 
 
 //const io is entry point of all sockets connected to the serve
@@ -13,6 +14,10 @@ const io = require('socket.io')(server);
 //connection from the client
 let counter = 0;
 io.on('connection', (socket) => {
+    socket.on('new-user', name => {
+    users[socket.id] = name;
+    socket.emit('user-connected', name);
+    })
 //increment counter
     counter++;
     console.log(counter+ ' someone connected');
@@ -28,6 +33,8 @@ io.on('connection', (socket) => {
         socket.emit("displayMessage", (target));
     });
 });
+
+
 
 
 server.listen(port, () =>{
