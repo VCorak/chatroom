@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
         // whereas the socket.emit will only send it back to the socket of which it received the message.
         socket.emit("displayMessage", { input: input, name: name} );
     });
-    socket.on('disconnect', () => {
+    socket.on('disconnect', () => { // doesn't take any params bcs we don't care who disconnects, just about their socket ID
         socket.broadcast.emit('user-disconnected', users[socket.id])
         delete users[socket.id]
     })
