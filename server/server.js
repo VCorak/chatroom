@@ -6,12 +6,8 @@ app.use(express.static(clientPath));
 const server = http.createServer(app);
 const port = 9020;
 let counter = 0;
-
-
-
 //const io is entry point of all sockets connected to the serve
 const io = require('socket.io')(server);
-
 const users = {};
 
 
@@ -40,6 +36,10 @@ io.on('connection', (socket) => {
         // whereas the socket.emit will only send it back to the socket of which it received the message.
         socket.emit("displayMessage", { input: input, name: name} );
     });
+    socket.on('disconnect', () => {
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+    })
 });
 
 

@@ -11,21 +11,25 @@ socket.on('display-message', target => {
 socket.on('user-connected', name => {
     target.innerHTML = (`${name} connected`);
 })
+socket.on('user-disconnected', name => {
+    target.innerHTML = (`${name} disconnected`);
+})
 
 // When we press the button on the client, because of our emit on the client, the server will receive the 'sendToAll' call and execute the piece of code within on the server
 let sendAll = document.getElementById('sendAll');
 sendAll.addEventListener("click", e => {
     e.preventDefault();
     input = document.getElementById("input").value;
-    socket.emit('sendAll', (input));
+    socket.emit('sendAll', input);
     input.value = ''; // doesn't work, fix it later!!
 })
 
 let sendMe = document.getElementById('sendMe');
+
 sendMe.addEventListener("click", e => {
     e.preventDefault();
     input = document.getElementById("input").value;
-    socket.emit('sendMe', (input));
+    socket.emit('sendMe', input);
     input.value = ''; // doesn't work, fix it later!!
 
 })
