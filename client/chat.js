@@ -1,7 +1,18 @@
 let socket = io.connect();
 
-// When we press the button on the client, because of our emit on the client, the server will receive the 'sendToAll' call and execute the piece of code within on the server
+// User name
+const name = prompt('What is your name?');
+target.innerHTML = ('You joined');
+socket.emit('new-user', name);// sending a message to server
 
+socket.on('display-message', target => {
+    target.innerHTML = (`${target.name}: ${target.target}`);
+})
+socket.on('user-connected', name => {
+    target.innerHTML = (`${name} connected`);
+})
+
+// When we press the button on the client, because of our emit on the client, the server will receive the 'sendToAll' call and execute the piece of code within on the server
 let sendAll = document.getElementById('sendAll');
 sendAll.addEventListener("click", e => {
     e.preventDefault();
@@ -23,14 +34,7 @@ sendMe.addEventListener("click", e => {
 //So now the client is waiting for the call to 'displayMessage' and then it will add that message to your target div.
 socket.on("displayMessage", (input) => {
 target = document.getElementById('target');
-target.innerHTML += "<br>" + input;
+target.innerHTML += "<br>" + (`${input.name}: ${input.input}`);
 
 })
 
-// User name
-const name = prompt('What is your name?');
-target.innerHTML = ('You joined');
-socket.emit('new-user', name);// sending a message to server
-socket.on('user-connected', name => {
-    target.innerHTML = (`${name} connected`);
-})
