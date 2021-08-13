@@ -2,14 +2,15 @@ let socket = io.connect();
 
 // User name
 const name = prompt('What is your name?');
-target.innerHTML = ('You joined');
+target = document.getElementById('name');
+target.innerHTML +=  (`${input.name}`);
 socket.emit('new-user', name);// sending a message to server
 
-socket.on('display-message', target => {
-    target.innerHTML = (`${target.name}: ${target.target}`);
+socket.on('display-message', message => {
+    message.innerHTML = (`${target.target}`);
 })
 socket.on('user-connected', name => {
-    target.innerHTML = (`${name} connected`);
+    target.innerHTML = (`${name}`);
 })
 socket.on('user-disconnected', name => {
     target.innerHTML = (`${name} disconnected`);
@@ -36,10 +37,16 @@ sendMe.addEventListener("click", e => {
 // We have now sent the message from the client to the server, now we just need to receive it back from the server.
 //So now the client is waiting for the call to 'displayMessage' and then it will add that message to your target div.
 socket.on("displayMessage", (input) => {
-    target = document.getElementById('target');
-    target.innerHTML += "<br>" + (`${input.name}: ${input.input}`);
+    target = document.getElementById('message-sent');
+    target.innerHTML += "<br>" + (`${input.input}`);
 
 })
+
+/*socket.on("displayMessage", (input) => {
+    target = document.getElementById('message-received');
+    target.innerHTML += "<br>" + (`${input.input}`);
+
+})*/
 
 
 

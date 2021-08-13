@@ -26,6 +26,11 @@ body {
     justify-content: center;
 }
 
+.marvel-device {
+    width: 50%;
+    height: 80%;
+}
+
 .marvel-device .screen {
     text-align: left;
 }
@@ -63,10 +68,12 @@ body {
 
 .chat {
     height: calc(100% - 69px);
+
 }
 
 .chat-container {
     height: 100%;
+
 }
 
 /* User Bar */
@@ -300,12 +307,14 @@ body {
     height: 50px;
     width: 100%;
     z-index: 2;
+
 }
 
 .conversation-compose div,
 .conversation-compose input {
     background: #fff;
     height: 100%;
+
 }
 
 .conversation-compose .emoji {
