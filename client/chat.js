@@ -25,7 +25,6 @@ sendAll.addEventListener("click", e => {
 })
 
 let sendMe = document.getElementById('sendMe');
-
 sendMe.addEventListener("click", e => {
     e.preventDefault();
     input = document.getElementById("input").value;
@@ -37,8 +36,12 @@ sendMe.addEventListener("click", e => {
 // We have now sent the message from the client to the server, now we just need to receive it back from the server.
 //So now the client is waiting for the call to 'displayMessage' and then it will add that message to your target div.
 socket.on("displayMessage", (input) => {
-target = document.getElementById('target');
-target.innerHTML += "<br>" + (`${input.name}: ${input.input}`);
+    target = document.getElementById('target');
+    target.innerHTML += "<br>" + (`${input.name}: ${input.input}`);
 
 })
+
+
+
+
 
